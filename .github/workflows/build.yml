@@ -1,15 +1,21 @@
-name: Build Android APK 
-on: [push, workflow_dispatch] 
+name: CI 
+on: push 
 jobs: 
   build: 
     runs-on: ubuntu-latest 
     steps: 
       - uses: actions/checkout@v4 
       - uses: actions/setup-python@v5 
-        with: {python-version: '3.10'} 
-      - run: sudo apt update 
-      - run: sudo apt install -y python3-pip zip unzip openjdk-17-jdk 
-      - run: pip install buildozer 
-      - run: buildozer android debug 
+        with: 
+          python-version: '3.10' 
+      - name: Install deps 
+        run: | 
+          sudo apt update 
+          sudo apt install -y python3-pip zip unzip openjdk-17-jdk 
+          pip install buildozer 
+      - name: Build 
+        run: buildozer android debug 
       - uses: actions/upload-artifact@v4 
-        with: {name: APK, path: bin/*.apk} 
+        with: 
+          name: APK 
+          path: bin/*.apk 
