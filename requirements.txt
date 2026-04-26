@@ -1,0 +1,15 @@
+flask
+requests
+psutil
+flask-socketio
+flask-limiter
+flask-cors
+aiohttp
+fastapi
+uvicorn
+pydantic
+redis
+gputil
+opencv-python
+zeroconf
+torch
